@@ -27,14 +27,11 @@ photos = UploadSet('photos', IMAGES)
 app.config['UPLOADED_PHOTOS_DEST'] = 'uploads'
 configure_uploads(app, photos)
 
-# Criando o banco de dados pysonDB
-#Criando uma tabela para o usuario
-#tabela feita em Json
+
 db_path = os.path.join(os.path.dirname(__file__), "users.json")
 db_users = db.getDb(db_path)
 
-#Criando uma tabela para as fotos
-#tabela feita em Json
+
 db_photos_path = os.path.join(os.path.dirname(__file__), "photos.json")
 db_photos = db.getDb(db_photos_path)
 
@@ -49,12 +46,13 @@ diretorio_treinamento = os.path.join(os.path.dirname(__file__), "uploads")
 # Criando o modelo User
 class User:
     # O construtor recebe os atributos do usuário: id, nome, email e senha
-    def __init__(self, id, name, email, password, photos=[]):
+    def __init__(self, id, name, email, password,phone = '', photos=[]):
         self.id = id
         self.name = name
         self.email = email
         self.password = password
         self.photos = photos
+        self.phone = phone
     
     # O método to_dict converte o objeto User em um dicionário
     def to_dict(self):
@@ -63,7 +61,8 @@ class User:
             "name": self.name,
             "email": self.email,
             "password": self.password,
-            "photos": self.photos
+            "photos": self.photos,
+            "phone": self.phone
         }
     
     # O método from_dict cria um objeto User a partir de um dicionário(Json)
@@ -74,6 +73,7 @@ class User:
             data.get("name"),
             data.get("email"),
             data.get("password"),
+            data.get("phone"),
             data.get("photos") #As fotos são opcionais para criação de usuario.
         )
     
@@ -273,8 +273,7 @@ def register():
         return jsonify({"message": "Email já cadastrado"}), 409
     
     # Criando um objeto User com os dados recebidos e gerando um id aleatório usando a função get_id
-    user = User(0, data.get("name"), data.get("email"), data.get("password")) # Usando a função get_id em vez do método getId
-    
+    user = User(0, data.get("name"), data.get("email"), data.get("password"), data.get("phone")) # Usando a função get_id em vez do método getId
     # Salvando o usuário no banco de dados
     user.save()
     # Retornando uma resposta com os dados do usuário e um status 201 (Created)

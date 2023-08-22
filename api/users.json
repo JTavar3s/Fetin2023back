@@ -1,5 +1,34 @@
 {
    "data": [
-      
+      {
+         "id": 225992431600674642,
+         "name": "joao",
+         "email": "tavares@email.com",
+         "password": "123456",
+         "photos": [
+            317308395520363052,
+            193260844363206245,
+            137204303739426295
+         ],
+         "phone": null
+      },
+      {
+         "id": 258504384526523695,
+         "name": "matheus",
+         "email": "matheus@email.com",
+         "password": "123456",
+         "photos": [
+            711799835189981304
+         ],
+         "phone": null
+      },
+      {
+         "id": 248108551157530485,
+         "name": "gustavo",
+         "email": "gustavoviana@hotmail.com",
+         "password": "123456789",
+         "photos": [],
+         "phone": "35997184823"
+      }
    ]
 }
