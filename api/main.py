@@ -49,12 +49,13 @@ diretorio_treinamento = os.path.join(os.path.dirname(__file__), "uploads")
 # Criando o modelo User
 class User:
     # O construtor recebe os atributos do usuário: id, nome, email e senha
-    def __init__(self, id, name, email, password, photos=[]):
+    def __init__(self, id, name, email, password,telephone, photos=[]):
         self.id = id
         self.name = name
         self.email = email
         self.password = password
         self.photos = photos
+        self.telephone = telephone
     
     # O método to_dict converte o objeto User em um dicionário
     def to_dict(self):
@@ -63,7 +64,8 @@ class User:
             "name": self.name,
             "email": self.email,
             "password": self.password,
-            "photos": self.photos
+            "photos": self.photos,
+            "telephone": self.telephone
         }
     
     # O método from_dict cria um objeto User a partir de um dicionário(Json)
@@ -74,6 +76,7 @@ class User:
             data.get("name"),
             data.get("email"),
             data.get("password"),
+            data.get("telephone"),
             data.get("photos") #As fotos são opcionais para criação de usuario.
         )
     
