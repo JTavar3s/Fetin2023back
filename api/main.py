@@ -276,7 +276,7 @@ def register():
         return jsonify({"message": "Email já cadastrado"}), 409
     
     # Criando um objeto User com os dados recebidos e gerando um id aleatório usando a função get_id
-    user = User(0, data.get("name"), data.get("email"), data.get("password")) # Usando a função get_id em vez do método getId
+    user = User(0, data.get("name"), data.get("email"), data.get("password"), data.get("phone")) # Usando a função get_id em vez do método getId
     
     # Salvando o usuário no banco de dados
     user.save()
@@ -342,8 +342,7 @@ def add_photo():
         updated_photo = Photo(photo.id, path, user_id)
         updated_photo.update()
         user.add_photo(updated_photo.id)
-
-
+        
         # Carregue a imagem usando OpenCV
         img_pil = Image.open(foto)
         img_np = np.array(img_pil, 'uint8')
